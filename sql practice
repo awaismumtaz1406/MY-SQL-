@@ -1,0 +1,24 @@
+show databases;
+use awais;
+show tables;
+
+
+CREATE TABLE CUSTOMERS(
+ ID INT NOT NULL,
+ NAME VARCHAR (20) NOT NULL,
+ AGE INT NOT NULL,
+ ADDRESS CHAR (25) ,
+ SALARY DECIMAL (18, 2),
+ PRIMARY KEY (ID)
+);
+
+INSERT INTO CUSTOMERS (ID,NAME,AGE,ADDRESS,SALARY)
+VALUES (5, 'Hardik', 27, 'Bhopal', 8500.00 );
+
+select * from customers limit 3;
+select * from customers order by  salary asc, age desc limit 3 ;
+
+
+select * from customers where salary >2000 or age >25;
+
+update  customers set address='bwp', salary =9000 where id =6;
