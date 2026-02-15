@@ -1,0 +1,83 @@
+create database awais;
+use  awais
+show databases
+CREATE TABLE user (
+id INT AUTO_INCREMENT PRIMARY KEY,
+ name VARCHAR(100) NOT NULL,
+ email VARCHAR(100) UNIQUE NOT NULL,
+ gender ENUM('Male', 'Female', 'Other'),
+ date_of_birth DATE,
+ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+alter table user modify  email varchar(100)not null;
+
+alter table user add constraint dobb check (dob>'1990-01-01');
+
+select name,year(dob) from user;
+select name, datediff(curdate(), dob) from user;
+
+CREATE index idxemail ON user(email);
+
+
+select * from user;
+INSERT INTO user (name, email, gender, date_of_birth) VALUES
+('chfb', 'bobrr@example.com', 'Male', '1990-11-23'),
+('Cjaarlie', 'chafvrlie@example.com', 'Other', '1988-02-17');
+
+show databases;
+use  awais;
+se
+INSERT INTO user (name, email, gender, date_of_birth) VALUES
+('com', 'breafb@example.com', 'Male', '1990-11-23');
+
+CREATE TABLE addresses (
+id INT AUTO_INCREMENT PRIMARY KEY,
+ user_id INT,
+ street VARCHAR(255),
+ city VARCHAR(100),
+ state VARCHAR(100),
+ pincode VARCHAR(10),
+ FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+
+CREATE TABLE admin_users (
+id INT PRIMARY KEY,
+ name VARCHAR(100),
+ email VARCHAR(100),
+ gender ENUM('Male', 'Female', 'Other'),
+ date_of_birth DATE,
+ salary INT
+);
+
+INSERT INTO admin_users (id, name, email, gender, date_of_birth, salary) VALUES
+(101, 'Anil Kumar', 'anil@example.com', 'Male', '1985-04-12', 60000),
+(102, 'Pooja Sharma', 'pooja@example.com', 'Female', '1992-09-20', 58000),
+(103, 'Rakesh Yadav', 'rakesh@example.com', 'Male', '1989-11-05', 54000),
+(104, 'Fatima Begum', 'fatima@example.com', 'Female', '1990-06-30', 62000);
+
+
+
+select name from user union all select name from admin_users;
+
+use awais;
+show tables;
+select * from user;
+create view v2 as select * from user;
+select * from v2;
+drop view v1;
+
+
+show indexes;
+create index a1 on user(email, gender);
+drop index a1 on users;
+
+
+
+
+
+
+alter table addresses add constraint fk foreign key(user_id) references user(id); 
+
+select * from addresses;
