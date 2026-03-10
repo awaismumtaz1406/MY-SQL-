@@ -99,13 +99,17 @@ LOWER(SUBSTRING(SUBSTRING_INDEX(customername,' ',-1),2))
 
 
 
-
-
-
-
 //  shows 
 select substring(email from position('@' in email)+ 1) from customertransactions
 
+//
+select coalesce(purchaseamount,'0') from customertransactions;
+
+UPDATE customertransactions
+SET purchaseamount=coalesce(purchaseamount,'0');
+
+select cast(purchaseamount as decimal(10,2)) 
+from customertransactions;
 
 
 
