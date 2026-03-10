@@ -56,10 +56,57 @@ update customertransactions
 set email=concat(email,'.com')
 where email not like '%.com'
 
+
 //set default
 update customertransactions
 set paymentmethod='credit card'
  where paymentmethod like 'card';
+
+//delete    failed records
+DELETE FROM customertransactions
+WHERE status = 'failed';
+
+
+//set -ve amount to null
+update customertransactions
+set purchaseamount=null where purchaseamount<0;
+
+
+// first letter capital
+update customertransactions
+set  customername=concat(upper(left(customername,1)),lower(substring(customername,2))
+)
+
+// trim()
+select trim(customername) from customertransactions;
+
+// replace - only display
+select replace(phonenumber,'-','') from customertransactions;
+//updates also 
+update customertransactions
+set  phonenumber=replace(phonenumber,'-','');
+
+// convert awais mumtaz to Awais Mumtaz
+
+UPDATE customertransactions
+SET customername = CONCAT(
+UPPER(LEFT(SUBSTRING_INDEX(customername,' ',1),1)),
+LOWER(SUBSTRING(SUBSTRING_INDEX(customername,' ',1),2)),
+' ',
+UPPER(LEFT(SUBSTRING_INDEX(customername,' ',-1),1)),
+LOWER(SUBSTRING(SUBSTRING_INDEX(customername,' ',-1),2))
+);
+
+
+
+
+
+
+
+//  shows 
+select substring(email from position('@' in email)+ 1) from customertransactions
+
+
 
 
 
