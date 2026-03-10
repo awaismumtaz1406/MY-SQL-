@@ -1,0 +1,7 @@
+use dataclean;
+set sql_safe_updates=0;
+update customertransactions
+set email='unknown@gmail.com'
+where email='';
+
+select * from customertransactions;
