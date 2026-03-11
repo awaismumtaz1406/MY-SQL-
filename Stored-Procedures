@@ -27,6 +27,10 @@ delimiter ;
 
 call adduser1(8,'awais',20,'lodhran',200000);
 
+//show 
+show procedure status where db='startersql';
+//drop
+drop procedure malik1 if exists;
 
 
 
