@@ -1,1 +1,25 @@
-hi
+
+create table userlog(
+id int primary key,
+name varchar(100)
+);
+
+select * from userlog;
+select * from customers;
+
+
+delimiter $$
+
+create trigger afteruserinsert
+after insert on customers for each row
+ begin
+ insert into userlog(id,name)
+ values(new.id,new.name);
+ end $$
+insert into customers(id,name,age,address, salary) values
+(23,'malik',200,'lahore',4000);
+
+//drop triggers
+drop triggers afteruserinsert if exists;
+
+
