@@ -1,0 +1,41 @@
+use awais;
+show tables;
+
+delimiter $$
+create procedure  malik1()
+begin
+select * from customers;
+end $$
+delimiter ;
+
+call malik1();
+
+delimiter $$
+create procedure  adduser1(
+in id int,
+in name varchar(100),
+in age int,
+in address varchar(100),
+in salary decimal(10,2)
+)
+begin
+insert into customers(id,name,age,address,salary)
+values(id,name,age,address,salary);
+select * from customers;
+end $$
+delimiter ;
+
+call adduser1(8,'awais',20,'lodhran',200000);
+
+
+
+
+
+
+
+
+
+
+
+
+
