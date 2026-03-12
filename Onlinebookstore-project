@@ -1,0 +1,37 @@
+use OnlineBookstore;
+select * from Books;
+select * from customers;
+select * from orders;
+
+-- // 1
+select b.genre, sum(total_amount) from books b join orders o on b.book_id=o.book_id
+group by b.genre;
+
+-- // 2
+select  avg(price) from books 
+ where genre='fantasy';
+
+-- // 3
+select c.customer_id,c.name, count(o.order_id) as c  from customers c join orders o 
+on c.customer_id=o.customer_id group by c.customer_id, c.name having count(o.order_id)>2;
+
+-- // 4
+select b.book_id, max(o.quantity) from books b join orders o 
+on b.book_id=o.book_id group by b.book_id;
+
+-- // 5
+select book_id, count(order_id) as ans  from orders group by 
+book_id order by  ans desc limit 1;
+
+-- // 6
+select book_id from books where genre='fantasy'
+ order by price desc limit 3;
+ 
+ -- // 7
+ select b.author, sum(o.quantity) as c from books b join orders o
+ group by b.author;
+ 
+  select c.city, o.total_amount from customers c  join orders o
+  on c.customer_id=o.customer_id  where o.total_amount>30;
+ 
+ 
